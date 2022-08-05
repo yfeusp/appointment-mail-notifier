@@ -13,14 +13,14 @@ logger = get_logger()
 
 
 class MailSender:
-    def __init__(self, config: dict):
+    def __init__(self, mail_config: dict):
         self.email_message = EmailMessage()
-        self.config = config
+        self.mail_config = mail_config
 
     def send(self, **kwargs):
         self.email_message["Subject"] = kwargs.get("subject")
-        self.email_message["From"] = self.config["smtp_username"]
-        self.email_message["To"] = self.config["email_recipient"]
+        self.email_message["From"] = self.mail_config["smtp_username"]
+        self.email_message["To"] = self.mail_config["email_recipient"]
         logged_in_smtp = self.__login_smtp()
         self.__send_smtp_message(logged_in_smtp)
         logged_in_smtp.quit()
@@ -37,11 +37,11 @@ class MailSender:
     def __login_smtp(self):
         try:
             logged_in_smtp = smtplib.SMTP_SSL(
-                self.config["smtp_host"], self.config["smtp_port"]
+                self.mail_config["smtp_host"], self.mail_config["smtp_port"]
             )
 
             logged_in_smtp.login(
-                self.config["smtp_username"], self.config["smtp_password"]
+                self.mail_config["smtp_username"], self.mail_config["smtp_password"]
             )
             return logged_in_smtp
         except Exception as ex:

@@ -17,14 +17,14 @@ kwargs = {
 
 
 def test_should_the_send_mail_method_be_called_successfully():
-    config = {
+    mail_config = {
         "smtp_username": "valid_username",
         "smtp_password": "valid_password",
         "email_recipient": "valid_recipient",
         "smtp_host": "valid_host",
         "smtp_port": "valid_port",
     }
-    mail_sender = MailSender(config)
+    mail_sender = MailSender(mail_config)
     with patch("smtplib.SMTP_SSL", autospec=True) as mock_smtp:
         mail_sender.send(**kwargs)
 
@@ -36,14 +36,14 @@ def test_should_the_send_mail_method_be_called_successfully():
 
 
 def test_should_throw_invalid_mail_credentials_error():
-    config = {
+    mail_config = {
         "smtp_username": "invalid_username",
         "smtp_password": "invalid_password",
         "email_recipient": "valid_recipient",
         "smtp_host": "valid_host",
         "smtp_port": "valid_port",
     }
-    mail_sender = MailSender(config)
+    mail_sender = MailSender(mail_config)
     with patch("smtplib.SMTP_SSL", autospec=True) as mock_smtp:
         context = mock_smtp.return_value
         context.login.side_effect = smtplib.SMTPAuthenticationError({}, msg="")
@@ -55,14 +55,14 @@ def test_should_throw_invalid_mail_credentials_error():
 
 
 def test_should_throw_invalid_recipient_error():
-    config = {
+    mail_config = {
         "smtp_username": "valid_username",
         "smtp_password": "valid_password",
         "email_recipient": "invalid_recipient",
         "smtp_host": "valid_host",
         "smtp_port": "valid_port",
     }
-    mail_sender = MailSender(config)
+    mail_sender = MailSender(mail_config)
     with patch("smtplib.SMTP_SSL", autospec=True) as mock_smtp:
         context = mock_smtp.return_value
         context.send_message.side_effect = smtplib.SMTPRecipientsRefused({})
@@ -74,14 +74,14 @@ def test_should_throw_invalid_recipient_error():
 
 
 def test_should_throw_host_or_port_failed_connection_error():
-    config = {
+    mail_config = {
         "smtp_username": "valid_username",
         "smtp_password": "valid_password",
         "email_recipient": "valid_recipient",
         "smtp_host": "invalid_host",
         "smtp_port": "invalid_port",
     }
-    mail_sender = MailSender(config)
+    mail_sender = MailSender(mail_config)
     with patch("smtplib.SMTP_SSL", autospec=True) as mock_smtp:
         mock_smtp.side_effect = gaierror()
         with pytest.raises(
