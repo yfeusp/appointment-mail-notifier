@@ -1,5 +1,6 @@
 import logging
-from config import log_config
+
+from notifier.config import log_config
 
 
 def get_logger():
