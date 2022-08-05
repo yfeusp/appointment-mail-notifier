@@ -41,7 +41,8 @@ class MailSender:
             )
 
             logged_in_smtp.login(
-                self.mail_config["smtp_username"], self.mail_config["smtp_password"]
+                self.mail_config["smtp_username"],
+                self.mail_config["smtp_password"],
             )
             return logged_in_smtp
         except Exception as ex:
