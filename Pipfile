@@ -5,11 +5,16 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
+requests = "*"
 
 [dev-packages]
 pytest = "*"
 flake8 = "*"
 flake8-black = "*"
+requests-mock = "*"
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+app = "python3 -m notifier"

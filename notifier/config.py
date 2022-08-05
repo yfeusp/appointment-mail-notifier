@@ -17,3 +17,6 @@ log_config = {
     "log_name": os.environ.get("LOG_NAME", "AMN"),
     "log_format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 }
+
+site_url = os.environ.get("SITE_URL")
+waiting_time = int(os.environ.get("WAITING_TIME"))
