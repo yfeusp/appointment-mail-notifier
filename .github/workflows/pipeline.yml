@@ -1,0 +1,38 @@
+name: Appointment Notifier CI
+
+on: [push, pull_request]
+
+jobs:
+  flake8-lint:
+    runs-on: ubuntu-latest
+    name: Static Code Analysis
+
+    steps:
+      - name: Check out source repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python environment
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.9"
+
+      - name: Flake8 Lint
+        uses: py-actions/flake8@v1
+
+  tests:
+      runs-on: ubuntu-latest
+      name: Run Tests Suite
+      needs: [flake8-lint]
+
+      steps:
+        - uses: actions/checkout@v2
+        - name: Set Up Python 3.9
+          uses: actions/setup-python@v2
+          with:
+              python-version: "3.9"
+
+        - name: Install Python Dependencies
+          run: echo "Install Python Dependencies"
+
+        - name: Run Tests
+          run: echo "Run Tests"
