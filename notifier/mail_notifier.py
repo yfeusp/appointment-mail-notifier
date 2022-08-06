@@ -14,11 +14,14 @@ class MailNotifier:
         self.site_url = site_url
 
     def handle(self):
-        response = self.session.get(self.site_url)
-        json_data = json.loads(response.text)
-        if len(json_data) > 0:
-            kwargs = {"subject": "Appointment Available"}
-            self.email_sender.send(**kwargs)
-            logger.info("Appointment available")
-        else:
-            logger.info("Appointment not available")
+        try:
+            response = self.session.get(self.site_url)
+            json_data = json.loads(response.text)
+            if len(json_data) > 0:
+                kwargs = {"subject": "Appointment Available"}
+                self.email_sender.send(**kwargs)
+                logger.info("Appointment available")
+            else:
+                logger.info("Appointment not available")
+        except Exception as ex:
+            logger.error(f"An exception has occurred with {ex}.")

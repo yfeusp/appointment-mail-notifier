@@ -31,3 +31,12 @@ def test_should_not_notify_when_appointment_is_not_available(logger, caplog):
         mail_notifier.handle()
         mail_notifier.email_sender.send.called.__eq__(False)
         assert "Appointment not available" in caplog.text
+
+
+def test_should_raise_an_exception_when_the_url_not_available(logger, caplog):
+    mail_notifier = MailNotifier(site_url, mail_config)
+    mail_notifier.email_sender.send = MagicMock(name="send")
+    mail_notifier.session.get = MagicMock(side_effect=Exception)
+    mail_notifier.handle()
+    mail_notifier.email_sender.send.called.__eq__(False)
+    assert "An exception has occurred with" in caplog.text
