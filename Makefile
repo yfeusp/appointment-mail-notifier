@@ -20,5 +20,6 @@ black:
 test:
 	pipenv run pytest
 
-
+start:
+	pipenv run app
 

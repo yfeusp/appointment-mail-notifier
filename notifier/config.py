@@ -19,3 +19,4 @@ log_config = {
 }
 
 site_url = os.environ.get("SITE_URL")
+waiting_time = int(os.environ.get("WAITING_TIME", "0"))
