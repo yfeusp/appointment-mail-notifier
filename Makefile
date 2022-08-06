@@ -23,3 +23,6 @@ test:
 start:
 	pipenv run app
 
+tests-coverage:
+	pipenv run tests-coverage
+
