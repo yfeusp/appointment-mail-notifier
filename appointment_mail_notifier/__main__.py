@@ -1,3 +1,5 @@
+from threading import Thread
+
 from appointment_mail_notifier import config
 from appointment_mail_notifier.notifier.daily_notifier import DailyNotifier
 from appointment_mail_notifier.loggin import get_logger
@@ -9,11 +11,8 @@ daily_notifier = DailyNotifier(config.email)
 
 
 def run_notifiers():
-    try:
-        mail_notifier.start()
-        daily_notifier.start()
-    except Exception as ex:
-        logger.error(f"An exception has occurred with {ex}.")
+    Thread(target=mail_notifier.start).start()
+    Thread(target=daily_notifier.start).start()
 
 
 def main():

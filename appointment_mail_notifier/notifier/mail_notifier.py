@@ -16,8 +16,8 @@ class MailNotifier:
         self.site_url = site_url
 
     def start(self, number_of_iterations=-1):
-        try:
-            while number_of_iterations != 0:
+        while number_of_iterations != 0:
+            try:
                 response = self.session.get(self.site_url)
                 json_data = json.loads(response.text)
                 if len(json_data) > 0:
@@ -26,7 +26,7 @@ class MailNotifier:
                     logger.info("Appointment available")
                 else:
                     logger.info("Appointment not available")
-                number_of_iterations -= 1
-                time.sleep(waiting_time)
-        except Exception as ex:
-            logger.error(f"An exception has occurred with {ex}.")
+            except Exception as ex:
+                logger.error(f"An exception has occurred with {ex}.")
+            number_of_iterations -= 1
+            time.sleep(waiting_time)
