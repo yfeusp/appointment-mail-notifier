@@ -1,7 +1,6 @@
 import time
 
 from appointment_mail_notifier import config
-from appointment_mail_notifier.api import main_api
 from appointment_mail_notifier.config import waiting_time
 from appointment_mail_notifier.notifier.daily_notifier import DailyNotifier
 from appointment_mail_notifier.loggin import get_logger
