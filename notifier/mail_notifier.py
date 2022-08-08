@@ -18,7 +18,7 @@ class MailNotifier:
             response = self.session.get(self.site_url)
             json_data = json.loads(response.text)
             if len(json_data) > 0:
-                kwargs = {"subject": "Appointment Available"}
+                kwargs = {"subject": "AMN - Appointment Available"}
                 self.email_sender.send(**kwargs)
                 logger.info("Appointment available")
             else:

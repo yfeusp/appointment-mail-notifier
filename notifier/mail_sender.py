@@ -18,6 +18,7 @@ class MailSender:
         self.mail_config = mail_config
 
     def send(self, **kwargs):
+        self.__clean_email_headers()
         self.email_message["Subject"] = kwargs.get("subject")
         self.email_message["From"] = self.mail_config["smtp_username"]
         self.email_message["To"] = self.mail_config["email_recipient"]
@@ -54,3 +55,8 @@ class MailSender:
             if isinstance(ex, smtplib.SMTPAuthenticationError):
                 raise InvalidMailCredentialsError()
             logger.error(f"An exception has occurred with {ex}.")
+
+    def __clean_email_headers(self):
+        self.email_message.__delitem__(name="Subject")
+        self.email_message.__delitem__(name="From")
+        self.email_message.__delitem__(name="To")
