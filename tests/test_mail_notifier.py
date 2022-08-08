@@ -1,7 +1,7 @@
 import requests_mock
 from unittest.mock import MagicMock
 
-from notifier.mail_notifier import MailNotifier
+from appointment_mail_notifier.notifier.mail_notifier import MailNotifier
 
 mail_config = {
     "smtp_username": "valid_username",

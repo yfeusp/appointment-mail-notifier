@@ -4,12 +4,12 @@ from unittest.mock import patch
 
 import pytest
 
-from notifier.exceptions import (
+from appointment_mail_notifier.notifier.exceptions import (
     InvalidMailCredentialsError,
     InvalidRecipientError,
     HostOrPortFailedConnectionError,
 )
-from notifier.mail_sender import MailSender
+from appointment_mail_notifier.notifier.mail_sender import MailSender
 
 kwargs = {
     "subject": "Subject Test",

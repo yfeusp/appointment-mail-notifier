@@ -1,7 +1,7 @@
 import pytest
 import logging
 
-from notifier.config import log_config
+from appointment_mail_notifier.config import log_config
 
 
 @pytest.fixture()

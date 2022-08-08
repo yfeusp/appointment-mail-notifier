@@ -1,7 +1,7 @@
 from datetime import datetime
 from unittest.mock import MagicMock
 
-from notifier.daily_notifier import DailyNotifier
+from appointment_mail_notifier.notifier.daily_notifier import DailyNotifier
 
 mail_config = {
     "smtp_username": "valid_username",

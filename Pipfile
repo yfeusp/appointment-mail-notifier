@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 python-dotenv = "*"
 requests = "*"
+fastapi = "*"
+uvicorn = "*"
 
 [dev-packages]
 pytest = "*"
@@ -19,4 +21,4 @@ python_version = "3.9"
 
 [scripts]
 app = "python3 -m notifier"
-tests-coverage = "pytest --cov-report term-missing --cov=notifier tests/"
+tests-coverage = "pytest --cov-report term-missing --cov=appointment_mail_notifier tests/"

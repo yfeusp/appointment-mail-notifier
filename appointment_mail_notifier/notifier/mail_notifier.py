@@ -1,8 +1,8 @@
 import json
 import requests
 
-from notifier.loggin import get_logger
-from notifier.mail_sender import MailSender
+from appointment_mail_notifier.loggin import get_logger
+from appointment_mail_notifier.notifier.mail_sender import MailSender
 
 logger = get_logger()
 

@@ -1,6 +1,6 @@
 import logging
 
-from notifier.config import log_config
+from appointment_mail_notifier.config import log_config
 
 
 def get_logger():

@@ -2,12 +2,12 @@ import smtplib
 from socket import gaierror
 from email.message import EmailMessage
 
-from notifier.exceptions import (
+from appointment_mail_notifier.notifier.exceptions import (
     InvalidRecipientError,
     HostOrPortFailedConnectionError,
     InvalidMailCredentialsError,
 )
-from notifier.loggin import get_logger
+from appointment_mail_notifier.loggin import get_logger
 
 logger = get_logger()
 
